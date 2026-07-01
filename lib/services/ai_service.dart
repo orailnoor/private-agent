@@ -148,14 +148,19 @@ For normal conversation (questions, chat, info requests), just respond with plai
         }
       }
 
+      final headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $_apiKey',
+      };
+      // OpenRouter-specific headers help with rankings and free-tier attribution.
+      if (_baseUrl.contains('openrouter.ai')) {
+        headers['HTTP-Referer'] = 'https://github.com/orailnoor/private-agent';
+        headers['X-Title'] = 'PrivateAgent';
+      }
+
       final response = await http.post(
         Uri.parse(requestUrl),
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer $_apiKey',
-          'HTTP-Referer': 'https://github.com/orailnoor/private-agent',
-          'X-Title': 'PrivateAgent',
-        },
+        headers: headers,
         body: jsonEncode({
           'model': _model,
           'messages': messages,
