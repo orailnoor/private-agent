@@ -5,6 +5,7 @@ import '../services/shizuku_service.dart';
 import '../services/screen_automation_service.dart';
 import '../services/telegram_service.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../models/ai_provider.dart';
 
 class SettingsScreen extends StatefulWidget {
   final AiService aiService;
@@ -221,24 +222,15 @@ class _SettingsScreenState extends State<SettingsScreen>
           const SizedBox(height: 8),
           Wrap(
             spacing: 8,
-            children: [
-              ActionChip(
-                label: const Text('DeepSeek', style: TextStyle(fontSize: 12)),
-                onPressed: () => _baseUrlController.text = 'https://api.deepseek.com',
-              ),
-              ActionChip(
-                label: const Text('OpenRouter', style: TextStyle(fontSize: 12)),
-                onPressed: () => _baseUrlController.text = 'https://openrouter.ai/api/v1',
-              ),
-              ActionChip(
-                label: const Text('Groq', style: TextStyle(fontSize: 12)),
-                onPressed: () => _baseUrlController.text = 'https://api.groq.com/openai/v1',
-              ),
-              ActionChip(
-                label: const Text('Local', style: TextStyle(fontSize: 12)),
-                onPressed: () => _baseUrlController.text = 'http://10.0.2.2:1234/v1',
-              ),
-            ],
+            children: aiProviders.map((provider) {
+              return ActionChip(
+                label: Text(provider.name, style: const TextStyle(fontSize: 12)),
+                onPressed: () {
+                  _baseUrlController.text = provider.baseUrl;
+                  _modelController.text = provider.defaultModel;
+                },
+              );
+            }).toList(),
           ),
           const SizedBox(height: 12),
           Row(

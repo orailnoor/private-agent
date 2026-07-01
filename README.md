@@ -36,6 +36,19 @@ This app requires an AI brain to operate. You can use it **100% for free** by us
 7. Type `openai/gpt-oss-120b:free` (or any other free model) into the Model field.
 8. Enable the **"PrivateAgent Screen Control"** service in your Android Accessibility Settings.
 
+### Ollama Cloud
+
+PrivateAgent now ships with a built-in **Ollama Cloud** preset.
+
+1. Go to [ollama.com](https://ollama.com/) and create an account.
+2. Generate an API key from your account settings.
+3. In PrivateAgent Settings, tap the **"Ollama Cloud"** chip.
+4. Paste your Ollama Cloud API key.
+5. Pick a model (e.g. `gemma3:4b`) or tap **Fetch** to see available models.
+6. Save and start chatting.
+
+> Note: Ollama Cloud uses the OpenAI-compatible endpoint at `https://ollama.com/v1`. Make sure you are using an **Ollama Cloud** API key, not a local Ollama instance key.
+
 ## Telegram Integration
 
 To enable remote access:
