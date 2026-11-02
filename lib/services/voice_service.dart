@@ -13,17 +13,21 @@ class VoiceService {
   Future<void> init() async {
     if (_isInitialized) return;
 
-    _isInitialized = await _speech.initialize(
-      onError: (error) {
-        _isListening = false;
-      },
-    );
+    try {
+      _isInitialized = await _speech.initialize(
+        onError: (error) {
+          _isListening = false;
+        },
+      );
 
-    // Configure TTS
-    await _tts.setLanguage('en-US');
-    await _tts.setSpeechRate(0.5);
-    await _tts.setVolume(1.0);
-    await _tts.setPitch(1.0);
+      // Configure TTS
+      await _tts.setLanguage('en-US');
+      await _tts.setSpeechRate(0.5);
+      await _tts.setVolume(1.0);
+      await _tts.setPitch(1.0);
+    } catch (_) {
+      _isInitialized = false;
+    }
   }
 
   /// Start listening for speech. Returns transcribed text via callback.
@@ -60,12 +64,16 @@ class VoiceService {
   /// Speak text aloud
   Future<void> speak(String text) async {
     if (text.isEmpty) return;
-    await _tts.speak(text);
+    try {
+      await _tts.speak(text);
+    } catch (_) {}
   }
 
   /// Stop speaking
   Future<void> stopSpeaking() async {
-    await _tts.stop();
+    try {
+      await _tts.stop();
+    } catch (_) {}
   }
 
   void dispose() {
