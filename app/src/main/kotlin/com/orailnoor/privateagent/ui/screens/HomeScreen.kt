@@ -3,6 +3,7 @@ package com.orailnoor.privateagent.ui.screens
 import android.app.Activity
 import android.content.Intent
 import android.speech.RecognizerIntent
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedVisibility
@@ -55,6 +56,10 @@ fun HomeScreen(
     val coroutineScope = rememberCoroutineScope()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val listState = rememberLazyListState()
+
+    BackHandler(enabled = drawerState.isOpen) {
+        coroutineScope.launch { drawerState.close() }
+    }
 
     var activeProvider by remember { mutableStateOf(preferencesManager.selectedProvider) }
     var chatMode by remember { mutableStateOf(preferencesManager.chatMode) } // "chat" or "agent"
