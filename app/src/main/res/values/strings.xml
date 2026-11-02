@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PrivateAgent</string>
+    <string name="accessibility_service_description">PrivateAgent uses this service to read your screen and perform actions like tapping, scrolling, and typing to automate tasks on your behalf.</string>
+</resources>

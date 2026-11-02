@@ -44,14 +44,5 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-# Python model training pipeline
-*.py
-*.jsonl
-venv/
-__pycache__/
-training_tasks.md
-enrich_dataset_prompt.md
-google-services.json
-
-# Local credentials bundled only into developer test builds
-/assets/local_config/ai_test_config.json
+# Widget Preview related
+.widget_preview/

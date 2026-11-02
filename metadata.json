@@ -1,0 +1,8 @@
+{
+  "name": "PrivateAgent",
+  "description": "PrivateAgent is an open-source Android automation agent that uses AI (Google Gemini, DeepSeek, OpenRouter) and Accessibility Services to interpret screen layouts and execute multi-step tasks across installed apps.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
