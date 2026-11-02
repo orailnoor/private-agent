@@ -293,7 +293,8 @@ If the task is accomplished, use {"action": "finish", "params": {}, "response": 
 
         // Find match by package name or application label
         val matchedPkg = packages.firstOrNull { pkg ->
-            val label = pm.getApplicationLabel(pkg.applicationInfo).toString()
+            val appInfo = pkg.applicationInfo ?: return@firstOrNull false
+            val label = pm.getApplicationLabel(appInfo).toString()
             label.contains(appName, ignoreCase = true) || pkg.packageName.contains(appName, ignoreCase = true)
         }
 

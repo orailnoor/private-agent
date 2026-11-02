@@ -10,6 +10,7 @@ import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONArray
 import org.json.JSONObject
+import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import java.util.concurrent.TimeUnit
 
 class AiService(private val prefs: PreferencesManager) {
@@ -108,7 +109,7 @@ Answer questions, explain concepts, brainstorm, write emails and messages, and a
         }
 
         // For Google Gemini API, support key parameter as well as Bearer
-        val urlBuilder = okhttp3.HttpUrl.parse(endpoint)?.newBuilder()
+        val urlBuilder = endpoint.toHttpUrlOrNull()?.newBuilder()
         if (provider == AiProvider.GOOGLE_GEMINI && urlBuilder != null && !apiKey.startsWith("Bearer ")) {
             urlBuilder.addQueryParameter("key", apiKey)
         }
@@ -172,7 +173,7 @@ Answer questions, explain concepts, brainstorm, write emails and messages, and a
                 cleanBase = cleanBase.removeSuffix("/")
 
                 val endpoint = "$cleanBase/models"
-                val urlBuilder = okhttp3.HttpUrl.parse(endpoint)?.newBuilder()
+                val urlBuilder = endpoint.toHttpUrlOrNull()?.newBuilder()
                 if (provider == AiProvider.GOOGLE_GEMINI && urlBuilder != null && !apiKey.startsWith("Bearer ")) {
                     urlBuilder.addQueryParameter("key", apiKey)
                 }

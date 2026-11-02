@@ -145,15 +145,17 @@ fun SettingsScreen(
                                             modifier = Modifier
                                                 .weight(1f)
                                                 .clip(RoundedCornerShape(14.dp))
-                                                .background(
+                                                .then(
                                                     if (isSelected && isGemini) {
-                                                        Brush.horizontalGradient(
-                                                            listOf(GeminiPurple.copy(alpha = 0.25f), GeminiBlue.copy(alpha = 0.25f))
+                                                        Modifier.background(
+                                                            Brush.horizontalGradient(
+                                                                listOf(GeminiPurple.copy(alpha = 0.25f), GeminiBlue.copy(alpha = 0.25f))
+                                                            )
                                                         )
                                                     } else if (isSelected) {
-                                                        MaterialTheme.colorScheme.primary.copy(alpha = 0.15f)
+                                                        Modifier.background(MaterialTheme.colorScheme.primary.copy(alpha = 0.15f))
                                                     } else {
-                                                        MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)
+                                                        Modifier.background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f))
                                                     }
                                                 )
                                                 .border(
